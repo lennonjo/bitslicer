@@ -1,13 +1,4 @@
-//#include "bitslice.h"
-
-//bitslice::bitslice() {
-	// TODO Auto-generated constructor stub
-
-//}
-
-//bitslice::~bitslice() {
-	// TODO Auto-generated destructor stub
-//}
+#include "bitslice.h"
 
 #include <iostream>
 #include <inttypes.h>
@@ -16,7 +7,6 @@
 #include <stdint.h>
 #include <cstdlib>
 #include <cstring>
-using namespace std;
 
 unsigned long long __rdtsc (void) {
   unsigned cycles_low, cycles_high;
@@ -127,7 +117,6 @@ inline void bitslice_shift_right(T a[], const int size, const int numShifts)
             count++;
         }
     }
-
     /* Alternative (but slower) implementation */
     //memmove(a, a+1, sizeof(T)*(size-1));
     //a[size-1] = 0;
@@ -521,20 +510,21 @@ template <typename T>
 inline void print_clock_cycles(T * cycles, const int length)
 {
     std::cout << "Print clock cycles\n";
-    for (int i = 0; i < length; i++){
+    for (int i = 0; i < length; i++)
+    {
         std::cout << cycles[i] << ",";
     }
 }
 
-typedef uint64_t base_type;
-
-//typedef uint64_t std_type;
-//typedef uint32_t std_type;
-//typedef uint16_t std_type;
-typedef uint8_t std_type;
-
 int main()
 {
+	typedef uint64_t base_type;
+
+	//typedef uint64_t std_type;
+	//typedef uint32_t std_type;
+	//typedef uint16_t std_type;
+	typedef uint8_t std_type;
+
     const int PASSES = 100;
 
     srand (time(NULL));
