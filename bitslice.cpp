@@ -181,8 +181,6 @@ inline void bitslice_add(T * __restrict__ a, T * __restrict__ b, T c[], const in
         c[i] = carry ^ (a[i] ^ b[i]);
         carry = (carry & (a[i] ^ b[i])) | (a[i] & b[i]);
     }
-
-
 }
 
 /*
@@ -220,7 +218,8 @@ inline void bitslice_sub(T * __restrict__ a, T * __restrict__ b, T c[], const in
 template <typename T>
 inline void bitslice_mul(T * __restrict__  a, T * __restrict__  b, T * __restrict__ c, const int size)
 {
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < size; i++)
+    {
         c[i] = a[i] & b[0];
     }
 
@@ -249,7 +248,8 @@ template <typename T>
 inline void bitslice_signed_mul(T * __restrict__ a, T * __restrict__ b, T * __restrict__ c, const int size)
 {
     /* first partial */
-    for (int i = 0; i < size-1; i++) {
+    for (int i = 0; i < size-1; i++)
+    {
         c[i] = a[i] & b[0];
     }
 
@@ -272,7 +272,8 @@ inline void bitslice_signed_mul(T * __restrict__ a, T * __restrict__ b, T * __re
         /* (new) zero padding */
         partial[i-1] = 0;
 
-        for (int j = i; j < (i+size-1); j++) {
+        for (int j = i; j < (i+size-1); j++)
+        {
             partial[j] = a[j-i] & b[i];
         }
 
@@ -291,7 +292,8 @@ inline void bitslice_signed_mul(T * __restrict__ a, T * __restrict__ b, T * __re
     /* (new) zero padding */
     partial[size-2] = 0;
 
-    for (int j = size-1; j < size*2-2; j++) {
+    for (int j = size-1; j < size*2-2; j++)
+    {
         partial[j] = ~(a[j-size-1] & b[size-1]);
     }
 
@@ -327,14 +329,19 @@ inline void bitslice_horizontal_add(T * __restrict__ a, T * __restrict__ result,
 {
     T * tmp = (T *) malloc (sizeof(T) * size);
     
-    for (int i = 0; i < size; i++){
+    for (int i = 0; i < size; i++)
+    {
         tmp[i] = a[i] << 1;
     }
+
     bitslice_add(a,tmp,result,size);
-      
+
     int count = 0;
-    while (count < sizeof(T)*8 - 1){
-        for (int i = 0; i < size; i++){
+
+    while (count < sizeof(T)*8 - 1)
+    {
+        for (int i = 0; i < size; i++)
+        {
             tmp[i] <<= 1;
         }
         bitslice_add(result,tmp,result,size);
