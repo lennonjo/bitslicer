@@ -1,0 +1,1 @@
+bitslice.d: ../bitslice.cpp
