@@ -50,6 +50,7 @@ inline void bitslice_convert (P * numbers, T * bitslices, const int nSize)
             element |= ( (numbers[j] & mask) >> i ) << n++;
         }
         bitslices[i] = element;
+
         element = 0;
         mask <<= 1;
         n = 0;
