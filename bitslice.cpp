@@ -77,7 +77,6 @@ inline void bitslice_convert_back (T * bitslices, P * numbers, const int bSize)
 template <typename T>
 inline void bitslice_shift_left(T a[], const int size, const int numShifts)
 {
-    
     if (numShifts > 0)
     {
         int count = 0;
